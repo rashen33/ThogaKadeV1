@@ -23,13 +23,14 @@
       <Label layoutX="225.0" layoutY="127.0" text="Name : " />
       <Label layoutX="441.0" layoutY="127.0" text="Address : " />
       <Label layoutX="660.0" layoutY="127.0" text="Salary : " />
-      <Button layoutX="119.0" layoutY="342.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add" />
+      <Button layoutX="253.0" layoutY="342.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add" />
       <Label layoutX="376.0" layoutY="38.0" text="Customer Form">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="174.0" layoutY="342.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
-      <Button layoutX="240.0" layoutY="342.0" mnemonicParsing="false" onAction="#updateBtnAction" text="Update" />
+      <Button layoutX="308.0" layoutY="342.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
+      <Button layoutX="374.0" layoutY="342.0" mnemonicParsing="false" onAction="#updateBtnAction" text="Update" />
+      <Button layoutX="445.0" layoutY="342.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
    </children>
 </AnchorPane>

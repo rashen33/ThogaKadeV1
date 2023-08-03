@@ -76,6 +76,42 @@ public class CustomerController {
     }
 
     public void updateBtnAction(ActionEvent actionEvent) {
+        String id = txtID.getText();
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        double salary = Double.parseDouble(txtSalary.getText());
+        Customer customer = new Customer(id,name,address,salary);
+        String SQL = "Update Customer set name=?, address=?, salary=? where id=?";
 
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement ppst = connection.prepareStatement(SQL);
+            ppst.setObject(1,customer.getName());
+            ppst.setObject(2,customer.getAddress());
+            ppst.setObject(3,customer.getSalary());
+            ppst.setObject(4,customer.getId());
+            int i = ppst.executeUpdate();
+            System.out.println(i>0 ? "Updated":"Update Fail");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteBtnAction(ActionEvent actionEvent) {
+        String id = txtID.getText();
+        String SQL = "Delete From Customer where id='"+id+"'";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement pst = connection.prepareStatement(SQL);
+            int i = pst.executeUpdate();
+            System.out.println(i>0 ? "Deleted" : "Delete Failed");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
