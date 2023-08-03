@@ -1,14 +1,15 @@
 package edu.icet.controller;
 
+import com.mysql.cj.protocol.Resultset;
 import edu.icet.db.DBConnection;
 import edu.icet.model.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import javax.swing.*;
+import java.awt.*;
+import java.sql.*;
 
 public class CustomerController {
 
@@ -47,6 +48,34 @@ public class CustomerController {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    public void searchBtnAction(ActionEvent actionEvent) {
+        String id = txtID.getText();
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement pst = connection.createStatement();
+            String SQL = "Select * from Customer where id = '"+id+"'";
+            ResultSet rst = pst.executeQuery(SQL);
+            if(rst.next()){
+                Customer customer = new Customer(rst.getString("id"),rst.getString("name"), rst.getString("address"), rst.getDouble("salary") );
+                txtName.setText(customer.getName());
+                txtAddress.setText(customer.getAddress());
+                txtSalary.setText(String.valueOf(customer.getSalary()));
+                System.out.println(id);
+            }else{
+                System.out.println("Customer not found");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateBtnAction(ActionEvent actionEvent) {
 
     }
 }
