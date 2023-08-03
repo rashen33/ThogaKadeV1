@@ -64,12 +64,15 @@ public class CustomerController implements Initializable {
             pst.setObject(4,customer.getSalary());
             int i = pst.executeUpdate();
             System.out.println(i > 0 ? "Added" : "Failed");
+            if(i>0){
+                loadTable();
+                clearTxtFields();
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void searchBtnAction(ActionEvent actionEvent) {
@@ -86,6 +89,8 @@ public class CustomerController implements Initializable {
                 txtAddress.setText(customer.getAddress());
                 txtSalary.setText(String.valueOf(customer.getSalary()));
                 System.out.println(id);
+                loadTable();
+                clearTxtFields();
             }else{
                 System.out.println("Customer not found");
             }
@@ -113,6 +118,10 @@ public class CustomerController implements Initializable {
             ppst.setObject(4,customer.getId());
             int i = ppst.executeUpdate();
             System.out.println(i>0 ? "Updated":"Update Fail");
+            if(i>0){
+                loadTable();
+                clearTxtFields();
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -128,7 +137,10 @@ public class CustomerController implements Initializable {
             PreparedStatement pst = connection.prepareStatement(SQL);
             int i = pst.executeUpdate();
             System.out.println(i>0 ? "Deleted" : "Delete Failed");
-
+            if(i>0){
+                loadTable();
+                clearTxtFields();
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -162,14 +174,19 @@ public class CustomerController implements Initializable {
     }
 
     public void clearBtnAction(ActionEvent actionEvent) {
-        txtID.setText("");
-        txtName.setText("");
-        txtSalary.setText("");
-        txtAddress.setText("");
+        clearTxtFields();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        loadTable();
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
+            if(null != newValue){
+                setTextFromTable((Customer) newValue);
+            }
+        });
+    }
+    public void loadTable(){
         //This loads once you run the programme
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -193,14 +210,17 @@ public class CustomerController implements Initializable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        tblCustomer.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
-            setTextFromTable((Customer) newValue);
-        });
     }
     public void setTextFromTable(Customer customer){
         txtID.setText(customer.getId());
         txtName.setText(customer.getName());
         txtAddress.setText(customer.getAddress());
         txtSalary.setText(String.valueOf(customer.getSalary()));
+    }
+    public void clearTxtFields(){
+        txtID.setText("");
+        txtName.setText("");
+        txtSalary.setText("");
+        txtAddress.setText("");
     }
 }
