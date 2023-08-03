@@ -1,11 +1,13 @@
 package edu.icet.controller;
 
+import edu.icet.model.Customer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import java.awt.event.ActionEvent;
 
 public class CustomerController {
 
+    public TextField txtName;
     @FXML
     private TextField txtID;
 
@@ -15,9 +17,13 @@ public class CustomerController {
     @FXML
     private TextField txtSalary;
 
-    @FXML
-    public void addBtnAction(ActionEvent event) {
 
+    public void addBtnAction(ActionEvent actionEvent) {
+        String id = txtID.getText();
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        double salary = Double.parseDouble(txtSalary.getText());
+        Customer customer = new Customer(id,name,address,salary);
+        System.out.println(customer);
     }
-
 }

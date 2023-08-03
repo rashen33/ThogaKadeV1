@@ -16,7 +16,7 @@
          </image>
       </ImageView>
       <TextField fx:id="txtID" layoutX="44.0" layoutY="123.0" promptText="ID" />
-      <TextField layoutX="273.0" layoutY="123.0" promptText="Name" />
+      <TextField fx:id="txtName" layoutX="273.0" layoutY="123.0" promptText="Name" />
       <TextField fx:id="txtAddress" layoutX="495.0" layoutY="123.0" promptText="Address" />
       <TextField fx:id="txtSalary" layoutX="703.0" layoutY="123.0" promptText="Salary" />
       <Label layoutX="14.0" layoutY="127.0" text="ID : " />
