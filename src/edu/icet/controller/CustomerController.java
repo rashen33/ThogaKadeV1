@@ -1,9 +1,23 @@
 package edu.icet.controller;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import java.awt.event.ActionEvent;
 
 public class CustomerController {
 
-    public void addBtnAction(ActionEvent actionEvent) {
+    @FXML
+    private TextField txtID;
+
+    @FXML
+    private TextField txtAddress;
+
+    @FXML
+    private TextField txtSalary;
+
+    @FXML
+    public void addBtnAction(ActionEvent event) {
+
     }
+
 }
