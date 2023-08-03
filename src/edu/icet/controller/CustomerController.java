@@ -148,31 +148,6 @@ public class CustomerController implements Initializable {
         }
     }
 
-    public void viewBtnAction(ActionEvent actionEvent) {
-        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-        colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
-
-        String SQL = "Select * From Customer";
-        ObservableList<Customer> list = FXCollections.observableArrayList();
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery(SQL);
-
-            while(rst.next()){
-                Customer customer = new Customer(rst.getString(1),rst.getString(2),rst.getString(3),rst.getDouble(4));
-                list.add(customer);
-            }
-            tblCustomer.setItems(list);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void clearBtnAction(ActionEvent actionEvent) {
         clearTxtFields();
     }

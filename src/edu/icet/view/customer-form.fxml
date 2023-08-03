@@ -25,17 +25,15 @@
       <Label layoutX="332.0" layoutY="127.0" text="Name : " />
       <Label layoutX="548.0" layoutY="127.0" text="Address : " />
       <Label layoutX="767.0" layoutY="127.0" text="Salary : " />
-      <Button layoutX="267.0" layoutY="538.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add" />
+      <Button layoutX="376.0" layoutY="538.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add" />
       <Label layoutX="505.0" layoutY="38.0" text="Customer Form">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="340.0" layoutY="540.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
-      <Button layoutX="427.0" layoutY="540.0" mnemonicParsing="false" onAction="#updateBtnAction" text="Update" />
-      <Button layoutX="517.0" layoutY="542.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
-      <Button layoutX="605.0" layoutY="542.0" mnemonicParsing="false" onAction="#viewBtnAction" text="View" />
-      <Button layoutX="676.0" layoutY="543.0" mnemonicParsing="false" onAction="#clearBtnAction" text="Clear" />
+      <Button layoutX="450.0" layoutY="538.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
+      <Button layoutX="534.0" layoutY="537.0" mnemonicParsing="false" onAction="#updateBtnAction" text="Update" />
+      <Button layoutX="626.0" layoutY="538.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
       <TableView fx:id="tblCustomer" layoutX="188.0" layoutY="180.0" prefHeight="329.0" prefWidth="688.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="144.0" text="ID" />
