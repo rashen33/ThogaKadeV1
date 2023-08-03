@@ -1,19 +1,19 @@
 package edu.icet.model;
 
-public class Order {
+public class Item {
     private String code;
     private String des;
     private double unitPrice;
     private String qtyOnHand;
 
-    public Order(String code, String des, double unitPrice, String qtyOnHand) {
+    public Item(String code, String des, double unitPrice, String qtyOnHand) {
         this.code = code;
         this.des = des;
         this.unitPrice = unitPrice;
         this.qtyOnHand = qtyOnHand;
     }
 
-    public Order() {
+    public Item() {
     }
 
     public String getCode() {
