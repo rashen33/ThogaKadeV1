@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("edu/icet/view/customer-controller.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("edu/icet/view/customer-form.fxml"))));
         primaryStage.show();
     }
 }

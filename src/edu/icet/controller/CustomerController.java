@@ -3,15 +3,23 @@ package edu.icet.controller;
 import com.mysql.cj.protocol.Resultset;
 import edu.icet.db.DBConnection;
 import edu.icet.model.Customer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
-public class CustomerController {
+public class CustomerController implements Initializable {
 
     public TextField txtName;
     @FXML
@@ -22,7 +30,20 @@ public class CustomerController {
 
     @FXML
     private TextField txtSalary;
+    @FXML
+    private TableView tblCustomer;
 
+    @FXML
+    private TableColumn colID;
+
+    @FXML
+    private TableColumn colName;
+
+    @FXML
+    private TableColumn colAddress;
+
+    @FXML
+    private TableColumn colSalary;
 
     public void addBtnAction(ActionEvent actionEvent) {
         String id = txtID.getText();
@@ -116,6 +137,28 @@ public class CustomerController {
     }
 
     public void viewBtnAction(ActionEvent actionEvent) {
+        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+
+        String SQL = "Select * From Customer";
+        ObservableList<Customer> list = FXCollections.observableArrayList();
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement stm = connection.createStatement();
+            ResultSet rst = stm.executeQuery(SQL);
+
+            while(rst.next()){
+                Customer customer = new Customer(rst.getString(1),rst.getString(2),rst.getString(3),rst.getDouble(4));
+                list.add(customer);
+            }
+            tblCustomer.setItems(list);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void clearBtnAction(ActionEvent actionEvent) {
@@ -123,5 +166,32 @@ public class CustomerController {
         txtName.setText("");
         txtSalary.setText("");
         txtAddress.setText("");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //This loads once you run the programme
+        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+
+        String SQL = "Select * From Customer";
+        ObservableList<Customer> list = FXCollections.observableArrayList();
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement stm = connection.createStatement();
+            ResultSet rst = stm.executeQuery(SQL);
+
+            while(rst.next()){
+                Customer customer = new Customer(rst.getString(1),rst.getString(2),rst.getString(3),rst.getDouble(4));
+                list.add(customer);
+            }
+            tblCustomer.setItems(list);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
