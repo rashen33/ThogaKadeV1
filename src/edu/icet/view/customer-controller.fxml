@@ -29,8 +29,10 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="308.0" layoutY="342.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
-      <Button layoutX="374.0" layoutY="342.0" mnemonicParsing="false" onAction="#updateBtnAction" text="Update" />
-      <Button layoutX="445.0" layoutY="342.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
+      <Button layoutX="303.0" layoutY="342.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
+      <Button layoutX="367.0" layoutY="343.0" mnemonicParsing="false" onAction="#updateBtnAction" text="Update" />
+      <Button layoutX="432.0" layoutY="344.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
+      <Button layoutX="494.0" layoutY="344.0" mnemonicParsing="false" onAction="#viewBtnAction" text="View" />
+      <Button layoutX="548.0" layoutY="345.0" mnemonicParsing="false" onAction="#clearBtnAction" text="Clear" />
    </children>
 </AnchorPane>

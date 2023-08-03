@@ -114,4 +114,14 @@ public class CustomerController {
             throw new RuntimeException(e);
         }
     }
+
+    public void viewBtnAction(ActionEvent actionEvent) {
+    }
+
+    public void clearBtnAction(ActionEvent actionEvent) {
+        txtID.setText("");
+        txtName.setText("");
+        txtSalary.setText("");
+        txtAddress.setText("");
+    }
 }
