@@ -193,5 +193,14 @@ public class CustomerController implements Initializable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
+            setTextFromTable((Customer) newValue);
+        });
+    }
+    public void setTextFromTable(Customer customer){
+        txtID.setText(customer.getId());
+        txtName.setText(customer.getName());
+        txtAddress.setText(customer.getAddress());
+        txtSalary.setText(String.valueOf(customer.getSalary()));
     }
 }
