@@ -17,6 +17,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
@@ -195,5 +196,17 @@ public class CustomerController implements Initializable {
         txtName.setText("");
         txtSalary.setText("");
         txtAddress.setText("");
+    }
+    public static ArrayList<String> getAllCustomerIds() throws ClassNotFoundException, SQLException{
+
+        ResultSet rst  = DBConnection.getInstance().getConnection()
+                .prepareStatement("SELECT id FROM Customer")
+                .executeQuery();
+        ArrayList<String> idSet= new ArrayList<>();
+        System.out.println();
+        while (rst.next()) {
+            idSet.add(rst.getString(1));
+        }
+        return idSet;
     }
 }
