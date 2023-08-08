@@ -1,14 +1,13 @@
 package edu.icet.controller;
 
 import edu.icet.db.DBConnection;
+import edu.icet.model.Customer;
 import edu.icet.model.Item;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ItemController {
     public TextField txtCode;
@@ -42,6 +41,27 @@ public class ItemController {
             JOptionPane.showMessageDialog(null, "Item not added!", "Alert", JOptionPane.ERROR_MESSAGE);
             throw new RuntimeException(e);
         }
+    }
 
+    public void searchItemBtnAction(ActionEvent actionEvent) {
+        String code = txtCode.getText();
+        String SQL = "Select * from Item where code = '"+code+"'";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement pst = connection.createStatement();
+            ResultSet rst = pst.executeQuery(SQL);
+            if(rst.next()){
+                Item item = new Item(rst.getString("code"),rst.getString("description"),rst.getDouble("unitprice"),rst.getString("qtyonhand"));
+                txtCode.setText(item.getCode());
+                txtDes.setText(item.getDes());
+                txtUprice.setText(String.valueOf(item.getUnitPrice()));
+                txtQtyOnhand.setText(item.getQtyOnHand());
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        }
     }
 }

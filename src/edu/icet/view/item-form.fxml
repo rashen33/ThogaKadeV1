@@ -42,5 +42,6 @@
          </columnResizePolicy>
       </TableView>
       <Button layoutX="256.0" layoutY="536.0" mnemonicParsing="false" onAction="#addItemBtnAction" text="Add" />
+      <Button layoutX="311.0" layoutY="536.0" mnemonicParsing="false" onAction="#searchItemBtnAction" text="Search" />
    </children>
 </AnchorPane>
