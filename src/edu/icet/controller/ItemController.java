@@ -151,19 +151,19 @@ public class ItemController implements Initializable{
         txtUprice.setText("");
     }
     public void loadTable(){
-        colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
-        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
-        colQtyOnHand.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
-
+        colCode.setCellValueFactory(new PropertyValueFactory<Item, String>("code"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<Item, String>("description"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<Item, Double>("unitPrice"));
+        colQtyOnHand.setCellValueFactory(new PropertyValueFactory<Item, Integer>("qtyOnHand"));
         String SQL = "Select * From Item";
         ObservableList<Item> list = FXCollections.observableArrayList();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery(SQL);
-            while(rst.next()){
-                Item item = new Item(rst.getString(1),rst.getString(2),rst.getDouble(3),rst.getString(4));
+            PreparedStatement pstm = connection.prepareStatement(SQL);
+            ResultSet rst = pstm.executeQuery();
+
+            while (rst.next()) {
+                Item item = new Item(rst.getString("code"), rst.getString("description"), rst.getDouble("unitPrice"), rst.getString("qtyOnHand"));
                 list.add(item);
             }
             tblItem.setItems(list);
@@ -172,5 +172,6 @@ public class ItemController implements Initializable{
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
     }
 }
