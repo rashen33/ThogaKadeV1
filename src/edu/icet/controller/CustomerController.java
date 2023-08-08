@@ -173,7 +173,6 @@ public class CustomerController implements Initializable {
             Connection connection = DBConnection.getInstance().getConnection();
             Statement stm = connection.createStatement();
             ResultSet rst = stm.executeQuery(SQL);
-
             while(rst.next()){
                 Customer customer = new Customer(rst.getString(1),rst.getString(2),rst.getString(3),rst.getDouble(4));
                 list.add(customer);

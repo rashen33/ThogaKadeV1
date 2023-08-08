@@ -96,6 +96,10 @@ public class ItemController implements Initializable{
             pst.setObject(3,item.getQtyOnHand());
             pst.setObject(4,item.getCode());
             int i = pst.executeUpdate();
+            if(i>0){
+                loadTable();
+                clearTxtFields();
+            }
             System.out.println(i>0 ? "Updated":"Failed");
         } catch (SQLException e) {
             System.out.println(e);
@@ -111,6 +115,10 @@ public class ItemController implements Initializable{
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement pst = connection.prepareStatement(SQL);
             int i = pst.executeUpdate();
+            if(i>0){
+                loadTable();
+                clearTxtFields();
+            }
             System.out.println(i>0 ? "Deleted":"Not Deleted");
         } catch (SQLException e) {
             throw new RuntimeException(e);
