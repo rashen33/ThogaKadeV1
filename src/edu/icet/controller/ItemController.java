@@ -64,4 +64,30 @@ public class ItemController {
             System.out.println(e);
         }
     }
+
+    public void updateItemBtnAction(ActionEvent actionEvent) {
+        String code = txtCode.getText();
+        String description = txtDes.getText();
+        double unitPrice = Double.parseDouble(txtUprice.getText());
+        String qtyOnHand = txtQtyOnhand.getText();
+        Item item = new Item(code,description,unitPrice,qtyOnHand);
+        String SQL = "Update Item set description=?,  unitPrice=?, qtyOnHand=? where code=?";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement pst = connection.prepareStatement(SQL);
+            pst.setObject(1,item.getDes());
+            pst.setObject(2,item.getUnitPrice());
+            pst.setObject(3,item.getQtyOnHand());
+            pst.setObject(4,item.getCode());
+            int i = pst.executeUpdate();
+            System.out.println(i>0 ? "Updated":"Failed");
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void deleteItemBtnAction(ActionEvent actionEvent) {
+    }
 }
