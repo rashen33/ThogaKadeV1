@@ -3,17 +3,31 @@ package edu.icet.controller;
 import edu.icet.db.DBConnection;
 import edu.icet.model.Customer;
 import edu.icet.model.Item;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
-public class ItemController {
+public class ItemController implements Initializable{
     public TextField txtCode;
     public TextField txtDes;
     public TextField txtUprice;
     public TextField txtQtyOnhand;
+    public TableView tblItem;
+    public TableColumn colCode;
+    public TableColumn colDescription;
+    public TableColumn colUnitPrice;
+    public TableColumn colQtyOnHand;
+
     public void addItemBtnAction(ActionEvent actionEvent) {
         String code = txtCode.getText();
         String description = txtDes.getText();
@@ -32,6 +46,8 @@ public class ItemController {
             int i = pst.executeUpdate();
             if(i>0){
                 System.out.println("Item added");
+                loadTable();
+                clearTxtFields();
                 JOptionPane.showMessageDialog(null, "Item Added!", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException e) {
@@ -101,6 +117,52 @@ public class ItemController {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadTable();
+        tblItem.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
+            if(null != newValue){
+                setTextFromTable((Item)newValue);
+            }
+        });
+    }
+
+    private void setTextFromTable(Item item) {
+        txtCode.setText(item.getCode());
+        txtDes.setText(item.getDes());
+        txtUprice.setText(String.valueOf(item.getUnitPrice()));
+        txtQtyOnhand.setText(item.getQtyOnHand());
+    }
+
+    public void clearTxtFields(){
+        txtCode.setText("");
+        txtDes.setText("");
+        txtQtyOnhand.setText("");
+        txtUprice.setText("");
+    }
+    public void loadTable(){
+        colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colQtyOnHand.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
+
+        String SQL = "Select * From Item";
+        ObservableList<Item> list = FXCollections.observableArrayList();
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement stm = connection.createStatement();
+            ResultSet rst = stm.executeQuery(SQL);
+            while(rst.next()){
+                Item item = new Item(rst.getString(1),rst.getString(2),rst.getDouble(3),rst.getString(4));
+                list.add(item);
+            }
+            tblItem.setItems(list);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
