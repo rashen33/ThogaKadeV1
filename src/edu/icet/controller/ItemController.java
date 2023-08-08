@@ -89,5 +89,18 @@ public class ItemController {
     }
 
     public void deleteItemBtnAction(ActionEvent actionEvent) {
+        String code = txtCode.getText();
+        String SQL = "Delete From Item where code='"+code+"'";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement pst = connection.prepareStatement(SQL);
+            int i = pst.executeUpdate();
+            System.out.println(i>0 ? "Deleted":"Not Deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
