@@ -1,9 +1,11 @@
 package edu.icet.controller;
 
+import com.sun.corba.se.pept.transport.ConnectionCache;
 import edu.icet.db.DBConnection;
 import edu.icet.model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -34,6 +36,7 @@ public class OrderController implements Initializable {
         loadDate();
         loadAllCustomerIds();
         setOrderID();
+        setCustomerName();
     }
 
     private void loadDate() {
@@ -52,6 +55,11 @@ public class OrderController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void setCustomerName(){
+
+
+
     }
     public String getLastOrderId() {
         try {
@@ -77,5 +85,23 @@ public class OrderController implements Initializable {
         }
     }
 
+    public void customerIdAction(ActionEvent actionEvent) {
+        String id = (String) cmbCustID.getValue();
+        System.out.println(id);
+        String SQL = "Select * from Customer where id = '"+id+"'";
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            ResultSet rst = connection.createStatement().executeQuery(SQL);
+            if(rst.next()){
+                Customer customer = new Customer(rst.getString(1),rst.getString(2),rst.getString(3),rst.getDouble(4));
+                txtCustName.setText(customer.getName());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
