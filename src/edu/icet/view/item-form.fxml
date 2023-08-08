@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="599.0" prefWidth="1053.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.CustomerController">
+<AnchorPane prefHeight="599.0" prefWidth="1053.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.ItemController">
    <children>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="340.0" layoutY="-47.0">
          <image>
             <Image url="@Thoga%20Kade.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tctCode" layoutX="133.0" layoutY="123.0" promptText="Code" />
+      <TextField fx:id="txtCode" layoutX="133.0" layoutY="123.0" promptText="Code" />
       <TextField fx:id="txtDes" layoutX="362.0" layoutY="123.0" promptText="Description" />
       <TextField fx:id="txtUprice" layoutX="584.0" layoutY="123.0" promptText="Unit Price" />
       <TextField fx:id="txtQtyOnhand" layoutX="830.0" layoutY="123.0" promptText="Qty on Hand" />
@@ -25,15 +25,11 @@
       <Label layoutX="290.0" layoutY="127.0" text="Description :" />
       <Label layoutX="522.0" layoutY="127.0" text="Unit Price :" />
       <Label layoutX="749.0" layoutY="127.0" text="Qty on Hand :" />
-      <Button layoutX="376.0" layoutY="538.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add" />
       <Label layoutX="505.0" layoutY="38.0" text="Item Form">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="450.0" layoutY="538.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
-      <Button layoutX="534.0" layoutY="537.0" mnemonicParsing="false" onAction="#updateBtnAction" text="Update" />
-      <Button layoutX="626.0" layoutY="538.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
       <TableView fx:id="tblCustomer" layoutX="192.0" layoutY="175.0" prefHeight="334.0" prefWidth="718.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="144.0" text="Code" />
@@ -45,5 +41,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <Button layoutX="256.0" layoutY="536.0" mnemonicParsing="false" onAction="#addItemBtnAction" text="Add" />
    </children>
 </AnchorPane>

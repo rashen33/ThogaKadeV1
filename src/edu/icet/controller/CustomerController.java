@@ -90,7 +90,6 @@ public class CustomerController implements Initializable {
                 txtSalary.setText(String.valueOf(customer.getSalary()));
                 System.out.println(id);
                 loadTable();
-                clearTxtFields();
             }else{
                 System.out.println("Customer not found");
             }
