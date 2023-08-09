@@ -36,13 +36,13 @@ public class OrderController implements Initializable {
         loadDate();
         loadAllCustomerIds();
         setOrderID();
-        setCustomerName();
+        loadAllItemCodes();
     }
 
-    private void loadDate() {
+    public void loadDate() {
         txtOrderDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
     }
-    private void loadAllCustomerIds() {
+    public void loadAllCustomerIds() {
         try {
             ObservableList<String> list = FXCollections.observableArrayList();
             for (String tempId : CustomerController.getAllCustomerIds()) {
@@ -56,10 +56,18 @@ public class OrderController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-    public void setCustomerName(){
-
-
-
+    public void loadAllItemCodes(){
+        ObservableList<String> list = FXCollections.observableArrayList();
+        try {
+            for (String orderID : ItemController.getAllItems()) {
+            list.add(orderID);
+            }
+            cmbCode.setItems(list);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public String getLastOrderId() {
         try {
@@ -103,5 +111,6 @@ public class OrderController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
 }
 

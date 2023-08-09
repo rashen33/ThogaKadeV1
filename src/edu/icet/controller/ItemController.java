@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.*;
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ItemController implements Initializable{
@@ -172,6 +173,17 @@ public class ItemController implements Initializable{
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+    public static ArrayList<String> getAllItems() throws ClassNotFoundException, SQLException{
 
+        ResultSet rst  = DBConnection.getInstance().getConnection()
+                .prepareStatement("SELECT code FROM Item")
+                .executeQuery();
+        ArrayList<String> codeSet= new ArrayList<>();
+        System.out.println();
+        while (rst.next()) {
+            codeSet.add(rst.getString(1));
+        }
+        return codeSet;
     }
 }
