@@ -3,6 +3,7 @@ package edu.icet.controller;
 import com.sun.corba.se.pept.transport.ConnectionCache;
 import edu.icet.db.DBConnection;
 import edu.icet.model.Customer;
+import edu.icet.model.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -112,5 +113,23 @@ public class OrderController implements Initializable {
         }
     }
 
+    public void itemCodeAction(ActionEvent actionEvent) {
+        String code = (String) cmbCode.getValue();
+        System.out.println(code);
+        String SQL = "Select * from Item where code='"+code+"'";
+        try {
+            ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery(SQL);
+            if(rst.next()){
+                Item item = new Item(rst.getString(1),rst.getString(2),rst.getDouble(3),rst.getString(4));
+                txtDes.setText(item.getDes());
+                txtUnitPrice.setText(String.valueOf(item.getUnitPrice()));
+                txtQtyOnHand.setText(item.getQtyOnHand());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
