@@ -85,7 +85,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="949.0" layoutY="549.0" mnemonicParsing="false" text="Place Order" />
+      <Button layoutX="949.0" layoutY="549.0" mnemonicParsing="false" onAction="#btnPlaceOrderAction" text="Place Order" />
       <Label layoutX="56.0" layoutY="553.0" text="Total : ">
          <font>
             <Font size="16.0" />

@@ -1,9 +1,8 @@
 package edu.icet.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import edu.icet.db.DBConnection;
-import edu.icet.model.Customer;
-import edu.icet.model.Item;
-import edu.icet.model.ShoppingCart;
+import edu.icet.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,11 +12,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import sun.awt.SubRegionShowable;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -183,6 +180,42 @@ public class OrderController implements Initializable {
         qty = Double.parseDouble(txtQty.getText());
         unitPrice = Double.parseDouble(txtUnitPrice.getText());
         return qty*unitPrice;
+    }
+
+    public void btnPlaceOrderAction(ActionEvent actionEvent) {
+        String orderID = txtOrderID.getText();
+        String date = txtOrderDate.getText();
+        String custID = (String) cmbCustID.getValue();
+        ObservableList<OrderDetails> list = FXCollections.observableArrayList();
+
+        for(int i=0; i<shoppingList.size(); i++){
+            String code = shoppingList.get(i).getCode();
+            double qty = shoppingList.get(i).getQty();
+            double unitPrice = shoppingList.get(i).getUnitPrice();
+            OrderDetails orderDetails = new OrderDetails(orderID,code,qty,unitPrice);
+            list.add(orderDetails);
+        }
+        Order order = new Order(orderID,date,custID,list);
+
+        boolean isAdded = placeOrder(order);
+    }
+
+    private boolean placeOrder(Order order) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement stm = connection.prepareStatement("Insert into Orders values(?,?,?)");
+            stm.setObject(1,order.getId());
+            stm.setObject(2,order.getDate());
+            stm.setObject(3,order.getCustomerID());
+            int i = stm.executeUpdate();
+            System.out.println(i>0 ? "OrderAdded":"Order not added");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return true;
     }
 }
 

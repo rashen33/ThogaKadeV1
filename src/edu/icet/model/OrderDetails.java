@@ -3,13 +3,13 @@ package edu.icet.model;
 public class OrderDetails {
     private String orderID;
     private String itemCode;
-    private String qty;
-    private String unitPrice;
+    private double qty;
+    private double unitPrice;
 
     public OrderDetails() {
     }
 
-    public OrderDetails(String orderID, String itemCode, String qty, String unitPrice) {
+    public OrderDetails(String orderID, String itemCode, double qty, double unitPrice) {
         this.orderID = orderID;
         this.itemCode = itemCode;
         this.qty = qty;
@@ -32,19 +32,19 @@ public class OrderDetails {
         this.itemCode = itemCode;
     }
 
-    public String getQty() {
+    public double getQty() {
         return qty;
     }
 
-    public void setQty(String qty) {
+    public void setQty(double qty) {
         this.qty = qty;
     }
 
-    public String getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(String unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
