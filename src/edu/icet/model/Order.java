@@ -45,7 +45,11 @@ public class Order {
         this.customerID = customerID;
     }
 
-    public Order(ObservableList<OrderDetails> list) {
+    public ObservableList<OrderDetails> getList() {
+        return list;
+    }
+
+    public void setList(ObservableList<OrderDetails> list) {
         this.list = list;
     }
 

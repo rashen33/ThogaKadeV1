@@ -182,7 +182,7 @@ public class OrderController implements Initializable {
         return qty*unitPrice;
     }
 
-    public void btnPlaceOrderAction(ActionEvent actionEvent) {
+    public void btnPlaceOrderAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String orderID = txtOrderID.getText();
         String date = txtOrderDate.getText();
         String custID = (String) cmbCustID.getValue();
@@ -198,24 +198,43 @@ public class OrderController implements Initializable {
         Order order = new Order(orderID,date,custID,list);
 
         boolean isAdded = placeOrder(order);
+        if(isAdded){
+            if(isAdded){
+                System.out.println("Item Added and QtyOnHand Updated");
+            }else{
+                System.out.println("Item added fail and qtyonhand not updated");
+            }
+        }else{
+            System.out.println("Item added fail");
+        }
     }
 
-    private boolean placeOrder(Order order) {
+    private boolean placeOrder(Order order) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
+            connection.setAutoCommit(false);
             PreparedStatement stm = connection.prepareStatement("Insert into Orders values(?,?,?)");
             stm.setObject(1,order.getId());
             stm.setObject(2,order.getDate());
             stm.setObject(3,order.getCustomerID());
-            int i = stm.executeUpdate();
-            System.out.println(i>0 ? "OrderAdded":"Order not added");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            boolean orderIsAdded = stm.executeUpdate()>0;
+            if(orderIsAdded){
+                boolean orderDetailAdded = OrderDetailController.addOrderDetail(order.getList());
+                if(orderDetailAdded){
+                    boolean itemUpdated = ItemController.updateStock(order.getList());
+                    if(itemUpdated){
+                        connection.commit();
+                        System.out.println("Updated Success!!");
+                        return true;
+                    }
+                }
+            }
+            connection.rollback();
+            return false;
+        } finally {
+            connection.setAutoCommit(true);
         }
-
-        return true;
     }
 }
 

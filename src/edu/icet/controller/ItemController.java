@@ -3,6 +3,7 @@ package edu.icet.controller;
 import edu.icet.db.DBConnection;
 import edu.icet.model.Customer;
 import edu.icet.model.Item;
+import edu.icet.model.OrderDetails;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -185,5 +186,20 @@ public class ItemController implements Initializable{
             codeSet.add(rst.getString(1));
         }
         return codeSet;
+    }
+    public static boolean updateStock(ObservableList<OrderDetails> list) throws SQLException, ClassNotFoundException {
+        for(OrderDetails orderDetails : list){
+            if(!updateStock(orderDetails)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static boolean updateStock(OrderDetails orderDetails) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pst = connection.prepareStatement("Update Item set qtyOnHand=qtyOnHand-? where code=?");
+        pst.setObject(1,orderDetails.getQty());
+        pst.setObject(2,orderDetails.getItemCode());
+        return pst.executeUpdate()>0;
     }
 }
