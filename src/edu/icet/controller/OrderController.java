@@ -1,16 +1,16 @@
 package edu.icet.controller;
 
-import com.sun.corba.se.pept.transport.ConnectionCache;
 import edu.icet.db.DBConnection;
 import edu.icet.model.Customer;
 import edu.icet.model.Item;
+import edu.icet.model.ShoppingCart;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import sun.awt.SubRegionShowable;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -31,6 +31,15 @@ public class OrderController implements Initializable {
     public ComboBox cmbCode;
     public Label txtOrderID;
     public Label txtCustName;
+    public TableView tblOrderDetail;
+    public TableColumn colCode;
+    public TableColumn colDes;
+    public TableColumn colQty;
+    public TableColumn colUnitPrice;
+    public TableColumn colTot;
+    public Label txtTot;
+    ObservableList<ShoppingCart> shoppingList = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,7 +48,6 @@ public class OrderController implements Initializable {
         setOrderID();
         loadAllItemCodes();
     }
-
     public void loadDate() {
         txtOrderDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
     }
@@ -93,7 +101,6 @@ public class OrderController implements Initializable {
             txtOrderID.setText("D001");
         }
     }
-
     public void customerIdAction(ActionEvent actionEvent) {
         String id = (String) cmbCustID.getValue();
         System.out.println(id);
@@ -112,7 +119,6 @@ public class OrderController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
     public void itemCodeAction(ActionEvent actionEvent) {
         String code = (String) cmbCode.getValue();
         System.out.println(code);
@@ -130,6 +136,53 @@ public class OrderController implements Initializable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void addBtnAction(ActionEvent actionEvent) {
+        String code = (String) cmbCode.getValue();
+        String description = txtDes.getText();
+        double unitPrice = Double.parseDouble(txtUnitPrice.getText());
+        double qty = Double.parseDouble(txtQty.getText());
+        double total = calculateTotal(qty,unitPrice);
+        ShoppingCart shoppingCart = new ShoppingCart(code,description,unitPrice,qty,total);
+
+        int row = isAlreadyExist(shoppingCart);
+        if(row == -1){
+            shoppingList.add(shoppingCart);
+            System.out.println(row);
+        }else{
+            ShoppingCart temp = shoppingList.get(row);
+            ShoppingCart newCart = new ShoppingCart(temp.getCode(),temp.getDescription(),temp.getUnitPrice(), temp.getQty() + qty, temp.getTotal() + total);
+            shoppingList.remove(row);
+            shoppingList.add(row,newCart);
+        }
+        System.out.println("DONE");
+        tblOrderDetail.setItems(shoppingList);
+        setCellValueFactory();
+        txtQty.clear();
+        txtTot.setText(String.valueOf(total));
+    }
+
+    private void setCellValueFactory() {
+        colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+        colDes.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        colTot.setCellValueFactory(new PropertyValueFactory<>("total"));
+    }
+
+    private int isAlreadyExist(ShoppingCart shoppingCart) {
+        for(int i=0; i<shoppingList.size(); i++){
+            if(shoppingCart.getCode().equals(shoppingList.get(i).getCode())){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private double calculateTotal(double qty, double unitPrice) {
+        qty = Double.parseDouble(txtQty.getText());
+        unitPrice = Double.parseDouble(txtUnitPrice.getText());
+        return qty*unitPrice;
     }
 }
 
