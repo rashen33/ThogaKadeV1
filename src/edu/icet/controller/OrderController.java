@@ -155,10 +155,18 @@ public class OrderController implements Initializable {
         System.out.println("DONE");
         tblOrderDetail.setItems(shoppingList);
         setCellValueFactory();
+        double sub = calculateSubTotal(shoppingList);
+        txtTot.setText(String.valueOf(sub));
         txtQty.clear();
-        txtTot.setText(String.valueOf(total));
     }
 
+    public double calculateSubTotal(ObservableList<ShoppingCart> shoppingList){
+        double subtotal = 0;
+        for(int i=0; i<shoppingList.size(); i++){
+            subtotal += shoppingList.get(i).getTotal();
+        }
+        return subtotal;
+    }
     private void setCellValueFactory() {
         colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
         colDes.setCellValueFactory(new PropertyValueFactory<>("description"));

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="599.0" prefWidth="1053.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.OrderController">
+<AnchorPane prefHeight="648.0" prefWidth="1053.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.OrderController">
     <children>
         <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="340.0" layoutY="-47.0">
             <image>
@@ -23,7 +23,7 @@
                 <Font name="System Bold" size="25.0" />
             </font>
         </Label>
-      <Label layoutX="56.0" layoutY="119.0" text="Order ID : ">
+      <Label layoutX="29.0" layoutY="119.0" text="Order ID       : ">
          <font>
             <Font size="16.0" />
          </font>
@@ -33,7 +33,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="701.0" layoutY="119.0" text="Order Date : ">
+      <Label layoutX="664.0" layoutY="119.0" text="Order Date         : ">
          <font>
             <Font size="16.0" />
          </font>
@@ -43,37 +43,37 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="199.0" text="Code : ">
+      <Label layoutX="34.0" layoutY="220.0" text="Code : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="209.0" layoutY="199.0" text="Description  : ">
+      <Label layoutX="249.0" layoutY="195.0" text="Description  : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="614.0" layoutY="199.0" text="Unit Price : ">
+      <Label layoutX="609.0" layoutY="194.0" text="Unit Price : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="760.0" layoutY="199.0" text="Qty. on Hand  : ">
+      <Label layoutX="760.0" layoutY="194.0" text="Qty. on Hand  : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="911.0" layoutY="199.0" text="Qty.  : ">
+      <Label layoutX="911.0" layoutY="194.0" text="Qty.  : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtDes" layoutX="217.0" layoutY="223.0" prefHeight="26.0" prefWidth="318.0" />
-      <TextField fx:id="txtUnitPrice" layoutX="608.0" layoutY="225.0" prefHeight="26.0" prefWidth="139.0" />
-      <TextField fx:id="txtQtyOnHand" layoutX="760.0" layoutY="225.0" prefHeight="26.0" prefWidth="111.0" />
-      <TextField fx:id="txtQty" layoutX="896.0" layoutY="226.0" prefHeight="26.0" prefWidth="128.0" />
+      <TextField fx:id="txtDes" layoutX="257.0" layoutY="219.0" prefHeight="26.0" prefWidth="318.0" />
+      <TextField fx:id="txtUnitPrice" layoutX="603.0" layoutY="220.0" prefHeight="26.0" prefWidth="139.0" />
+      <TextField fx:id="txtQtyOnHand" layoutX="760.0" layoutY="220.0" prefHeight="26.0" prefWidth="111.0" />
+      <TextField fx:id="txtQty" layoutX="896.0" layoutY="221.0" prefHeight="26.0" prefWidth="128.0" />
       <TextField fx:id="txtOrderDate" layoutX="799.0" layoutY="119.0" prefHeight="26.0" prefWidth="173.0" />
-      <TableView fx:id="tblOrderDetail" layoutX="106.0" layoutY="280.0" prefHeight="248.0" prefWidth="786.0">
+      <TableView fx:id="tblOrderDetail" layoutX="90.0" layoutY="310.0" prefHeight="267.0" prefWidth="860.0">
         <columns>
           <TableColumn fx:id="colCode" prefWidth="75.0" text="Code" />
           <TableColumn fx:id="colDes" prefWidth="75.0" text="Description" />
@@ -85,14 +85,14 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="949.0" layoutY="549.0" mnemonicParsing="false" onAction="#btnPlaceOrderAction" text="Place Order" />
-      <Label layoutX="56.0" layoutY="553.0" text="Total : ">
+      <Button layoutX="924.0" layoutY="597.0" mnemonicParsing="false" onAction="#btnPlaceOrderAction" text="Place Order" />
+      <Label layoutX="57.0" layoutY="603.0" text="Total : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
       <ComboBox fx:id="cmbCustID" layoutX="156.0" layoutY="153.0" onAction="#customerIdAction" prefWidth="150.0" />
-      <ComboBox fx:id="cmbCode" layoutX="111.0" layoutY="198.0" onAction="#itemCodeAction" prefHeight="28.0" prefWidth="85.0" />
+      <ComboBox fx:id="cmbCode" layoutX="89.0" layoutY="219.0" onAction="#itemCodeAction" prefHeight="31.0" prefWidth="139.0" />
       <Label fx:id="txtOrderID" layoutX="135.0" layoutY="119.0">
          <font>
             <Font size="16.0" />
@@ -103,8 +103,10 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="369.0" layoutY="178.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add" />
-      <Button layoutX="440.0" layoutY="178.0" mnemonicParsing="false" text="Remove" />
-      <Label fx:id="txtTot" layoutX="106.0" layoutY="557.0" />
+      <Button layoutX="934.0" layoutY="269.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add to Cart" />
+      <Button layoutX="849.0" layoutY="269.0" mnemonicParsing="false" text="Remove" />
+      <Label fx:id="txtTot" layoutX="118.0" layoutY="606.0" />
+      <Button layoutX="115.0" layoutY="269.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add Item" />
+      <Button layoutX="332.0" layoutY="154.0" mnemonicParsing="false" onAction="#addBtnAction" text="New Customer" />
     </children>
 </AnchorPane>
