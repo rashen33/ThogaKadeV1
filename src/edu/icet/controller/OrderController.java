@@ -7,8 +7,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import sun.awt.SubRegionShowable;
 
 import java.net.URL;
@@ -152,11 +154,10 @@ public class OrderController implements Initializable {
             shoppingList.remove(row);
             shoppingList.add(row,newCart);
         }
-        System.out.println("DONE");
         tblOrderDetail.setItems(shoppingList);
         setCellValueFactory();
         double sub = calculateSubTotal(shoppingList);
-        txtTot.setText(String.valueOf(sub));
+        txtTot.setText(String.valueOf(sub) + "/=");
         txtQty.clear();
     }
 
@@ -208,12 +209,10 @@ public class OrderController implements Initializable {
         boolean isAdded = placeOrder(order);
         if(isAdded){
             if(isAdded){
-                System.out.println("Item Added and QtyOnHand Updated");
-            }else{
-                System.out.println("Item added fail and qtyonhand not updated");
+                new Alert(Alert.AlertType.INFORMATION,"Order Success!").show();
             }
         }else{
-            System.out.println("Item added fail");
+            new Alert(Alert.AlertType.WARNING,"Order Fail!").show();
         }
     }
 
@@ -243,6 +242,10 @@ public class OrderController implements Initializable {
         } finally {
             connection.setAutoCommit(true);
         }
+    }
+
+    public void addNewCustomerAction(ActionEvent actionEvent) {
+        //
     }
 }
 
