@@ -4,13 +4,20 @@ import edu.icet.db.DBConnection;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -23,6 +30,7 @@ import java.util.ResourceBundle;
 
 public class DashBoardController implements Initializable {
 
+    public Pane rootPane;
     @FXML
     private AnchorPane sideAncPane;
 
@@ -58,101 +66,82 @@ public class DashBoardController implements Initializable {
 
     @FXML
     private Label txtDate;
+    public AnchorPane anpRoot;
+    public AnchorPane anpDashBoard;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadGreeting();
-        loadDate();
-        loadTime();
-        setOrderID();
-        setCustomerID();
-        setItem();
+        loadDashBoard();
     }
 
-    private void loadGreeting() {
-        LocalTime cTime = LocalTime.now();
-        if(cTime.getHour() > 5 && cTime.getHour() < 12 ){
-            txtGreeting.setText("Good Morning!");
-        } else if (cTime.getHour() >= 12 && cTime.getHour() < 5) {
-            txtGreeting.setText("Good Afternoon!");
-        } else {
-            txtGreeting.setText("Good Evening!");
-        }
-    }
-
-    private void loadTime() {
-        Timeline time = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            LocalTime cTime = LocalTime.now();
-            txtTime.setText(
-                    cTime.getHour() + ":" + cTime.getMinute() + ":" + cTime.getSecond()
-            );
-        }),
-                new KeyFrame(Duration.seconds(01))
-        );
-        time.setCycleCount(Animation.INDEFINITE);
-        time.play();
-    }
-
-    private void loadDate() {
-        txtDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-    }
-    public void setOrderID(){
-        String lastOrderId = getLastOrderId();
-        lastOrderId = lastOrderId.split("[A-Z]")[1]; // D001==> 001
-        lastOrderId = String.format("%02d", (Integer.parseInt(lastOrderId)));
-        txtOrderNo.setText(lastOrderId);
-    }
-
-    public String getLastOrderId() {
+    public void loadDashBoard() {
+        URL resource = this.getClass().getResource("/edu/icet/view/dash-board-root.fxml");
+        assert resource != null;
+        Parent load;
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery("SELECT id FROM Orders ORDER BY id DESC LIMIT 1"); //gets the highest order id from the order list.
-            return rst.next() ? rst.getString("id") : null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            load = FXMLLoader.load(resource);
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(load);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-    public String getLastCustomerId() {
+
+    public void customerButton(ActionEvent actionEvent) {
+        URL resource = this.getClass().getResource("/edu/icet/view/customer-form.fxml");
+        assert resource != null;
+        Parent load;
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery("SELECT id FROM Customer ORDER BY id DESC LIMIT 1"); //gets the highest order id from the order list.
-            return rst.next() ? rst.getString("id") : null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            load = FXMLLoader.load(resource);
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(load);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void setCustomerID(){
-        String lastCustomerId = getLastCustomerId();
-        lastCustomerId = lastCustomerId.split("[A-Z]")[1]; // D001==> 001
-        lastCustomerId = String.format("%02d", (Integer.parseInt(lastCustomerId)));
-        txtCustNo.setText(lastCustomerId);
-    }
-
-    public String getLastItem() {
+    public void itemButton(ActionEvent actionEvent) {
+        URL resource = this.getClass().getResource("/edu/icet/view/item-form.fxml");
+        assert resource != null;
+        Parent load;
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery("SELECT code FROM Item ORDER BY code DESC LIMIT 1"); //gets the highest order id from the order list.
-            return rst.next() ? rst.getString("code") : null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            load = FXMLLoader.load(resource);
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(load);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void setItem(){
-        String item = getLastItem();
-        item = item.split("[A-Z]")[1]; // D001==> 001
-        item = String.format("%02d", (Integer.parseInt(item)));
-        txtItemNo.setText(item);
+    public void orderButton(ActionEvent actionEvent) {
+        URL resource = this.getClass().getResource("/edu/icet/view/order-form.fxml");
+        assert resource != null;
+        Parent load;
+        try {
+            load = FXMLLoader.load(resource);
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(load);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void dashBoardBtn(ActionEvent actionEvent) {
+        URL resource = this.getClass().getResource("/edu/icet/view/dash-board-root.fxml");
+        assert resource != null;
+        Parent load;
+        try {
+            load = FXMLLoader.load(resource);
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(load);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void exitButton(ActionEvent actionEvent) {
+        System.exit(0);
+    }
 }
 

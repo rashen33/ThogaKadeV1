@@ -8,29 +8,26 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="599.0" prefWidth="1053.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.ItemController">
+<AnchorPane prefHeight="789.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.ItemController">
    <children>
-      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="340.0" layoutY="-47.0">
-         <image>
-            <Image url="@Thoga%20Kade.png" />
-         </image>
-      </ImageView>
-      <TextField fx:id="txtCode" layoutX="133.0" layoutY="123.0" promptText="Code" />
-      <TextField fx:id="txtDes" layoutX="362.0" layoutY="123.0" promptText="Description" />
-      <TextField fx:id="txtUprice" layoutX="584.0" layoutY="123.0" promptText="Unit Price" />
-      <TextField fx:id="txtQtyOnhand" layoutX="830.0" layoutY="123.0" promptText="Qty on Hand" />
-      <Label layoutX="90.0" layoutY="127.0" text="Code :" />
-      <Label layoutX="290.0" layoutY="127.0" text="Description :" />
-      <Label layoutX="522.0" layoutY="127.0" text="Unit Price :" />
-      <Label layoutX="749.0" layoutY="127.0" text="Qty on Hand :" />
-      <Label layoutX="505.0" layoutY="38.0" text="Item Form">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c4d7b2" height="136.0" layoutX="-7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="992.0" />
+      <TextField fx:id="txtCode" layoutX="95.0" layoutY="185.0" prefHeight="31.0" prefWidth="100.0" promptText="Code" />
+      <TextField fx:id="txtDes" layoutX="312.0" layoutY="185.0" promptText="Description" />
+      <TextField fx:id="txtUprice" layoutX="592.0" layoutY="185.0" prefHeight="31.0" prefWidth="123.0" promptText="Unit Price" />
+      <TextField fx:id="txtQtyOnhand" layoutX="845.0" layoutY="185.0" prefHeight="31.0" prefWidth="111.0" promptText="Qty on Hand" />
+      <Label layoutX="40.0" layoutY="189.0" text="Code :" />
+      <Label layoutX="221.0" layoutY="189.0" text="Description :" />
+      <Label layoutX="513.0" layoutY="189.0" text="Unit Price :" />
+      <Label layoutX="740.0" layoutY="189.0" text="Qty on Hand :" />
+      <Label layoutX="440.0" layoutY="45.0" text="Item Form">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <TableView fx:id="tblItem" layoutX="87.0" layoutY="166.0" prefHeight="348.0" prefWidth="904.0">
+      <TableView fx:id="tblItem" layoutX="47.0" layoutY="269.0" prefHeight="404.0" prefWidth="904.0">
         <columns>
           <TableColumn fx:id="colCode" prefWidth="125.0" text="Code" />
           <TableColumn fx:id="colDescription" prefWidth="220.0" text="Description" />
@@ -41,9 +38,14 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="418.0" layoutY="536.0" mnemonicParsing="false" onAction="#addItemBtnAction" text="Add" />
-      <Button layoutX="474.0" layoutY="536.0" mnemonicParsing="false" onAction="#searchItemBtnAction" text="Search" />
-      <Button layoutX="544.0" layoutY="536.0" mnemonicParsing="false" onAction="#updateItemBtnAction" text="Update" />
-      <Button layoutX="614.0" layoutY="536.0" mnemonicParsing="false" onAction="#deleteItemBtnAction" text="Delete" />
+      <Button layoutX="337.0" layoutY="718.0" mnemonicParsing="false" onAction="#addItemBtnAction" text="Add" />
+      <Button layoutX="420.0" layoutY="718.0" mnemonicParsing="false" onAction="#searchItemBtnAction" text="Search" />
+      <Button layoutX="516.0" layoutY="718.0" mnemonicParsing="false" onAction="#updateItemBtnAction" text="Update" />
+      <Button layoutX="617.0" layoutY="718.0" mnemonicParsing="false" onAction="#deleteItemBtnAction" text="Delete" />
+      <ImageView fitHeight="85.0" fitWidth="85.0" layoutX="343.0" layoutY="26.0">
+         <image>
+            <Image url="@icons/list-items.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -8,33 +8,30 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="599.0" prefWidth="1053.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.CustomerController">
+<AnchorPane prefHeight="789.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.CustomerController">
    <children>
-      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="340.0" layoutY="-47.0">
-         <image>
-            <Image url="@Thoga%20Kade.png" />
-         </image>
-      </ImageView>
-      <TextField fx:id="txtID" layoutX="151.0" layoutY="123.0" promptText="ID" />
-      <TextField fx:id="txtName" layoutX="380.0" layoutY="123.0" promptText="Name" />
-      <TextField fx:id="txtAddress" layoutX="602.0" layoutY="123.0" promptText="Address" />
-      <TextField fx:id="txtSalary" layoutX="810.0" layoutY="123.0" promptText="Salary" />
-      <Label layoutX="121.0" layoutY="127.0" text="ID : " />
-      <Label layoutX="332.0" layoutY="127.0" text="Name : " />
-      <Label layoutX="548.0" layoutY="127.0" text="Address : " />
-      <Label layoutX="767.0" layoutY="127.0" text="Salary : " />
-      <Button layoutX="376.0" layoutY="538.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add" />
-      <Label layoutX="505.0" layoutY="38.0" text="Customer Form">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c4d7b2" height="136.0" layoutX="-2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1016.0" />
+      <TextField fx:id="txtID" layoutX="77.0" layoutY="200.0" prefHeight="31.0" prefWidth="114.0" promptText="ID" />
+      <TextField fx:id="txtName" layoutX="257.0" layoutY="200.0" promptText="Name" />
+      <TextField fx:id="txtAddress" layoutX="530.0" layoutY="200.0" promptText="Address" />
+      <TextField fx:id="txtSalary" layoutX="778.0" layoutY="200.0" promptText="Salary" />
+      <Label layoutX="47.0" layoutY="204.0" text="ID : " />
+      <Label layoutX="205.0" layoutY="204.0" text="Name : " />
+      <Label layoutX="461.0" layoutY="204.0" text="Address : " />
+      <Label layoutX="728.0" layoutY="204.0" text="Salary : " />
+      <Button layoutX="376.0" layoutY="721.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add" />
+      <Label layoutX="418.0" layoutY="45.0" text="Customer Form">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Button layoutX="450.0" layoutY="538.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
-      <Button layoutX="534.0" layoutY="537.0" mnemonicParsing="false" onAction="#updateBtnAction" text="Update" />
-      <Button layoutX="626.0" layoutY="538.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
-      <TableView fx:id="tblCustomer" layoutX="188.0" layoutY="180.0" prefHeight="329.0" prefWidth="688.0">
+      <Button layoutX="450.0" layoutY="721.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
+      <Button layoutX="534.0" layoutY="720.0" mnemonicParsing="false" onAction="#updateBtnAction" text="Update" />
+      <Button layoutX="626.0" layoutY="721.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
+      <TableView fx:id="tblCustomer" layoutX="105.0" layoutY="279.0" prefHeight="415.0" prefWidth="833.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="144.0" text="ID" />
           <TableColumn fx:id="colName" prefWidth="153.0" text="Name" />
@@ -45,5 +42,10 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <ImageView fitHeight="85.0" fitWidth="85.0" layoutX="312.0" layoutY="26.0">
+         <image>
+            <Image url="@icons/customer.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

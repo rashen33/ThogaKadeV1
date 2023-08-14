@@ -6,13 +6,17 @@ import edu.icet.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sun.awt.SubRegionShowable;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -21,6 +25,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class OrderController implements Initializable {
+    public Pane rootPane;
+
     public TextField txtOrderDate;
     public TextField txtDes;
     public TextField txtUnitPrice;
@@ -245,7 +251,29 @@ public class OrderController implements Initializable {
     }
 
     public void addNewCustomerAction(ActionEvent actionEvent) {
-        //
+        URL resource = this.getClass().getResource("/edu/icet/view/customer-form.fxml");
+        assert resource != null;
+        Parent load;
+        try {
+            load = FXMLLoader.load(resource);
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(load);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addItemBtnAction(ActionEvent actionEvent) {
+        URL resource = this.getClass().getResource("/edu/icet/view/item-form.fxml");
+        assert resource != null;
+        Parent load;
+        try {
+            load = FXMLLoader.load(resource);
+            rootPane.getChildren().clear();
+            rootPane.getChildren().add(load);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

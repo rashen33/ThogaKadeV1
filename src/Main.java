@@ -16,6 +16,7 @@ public class Main extends Application {
         String css = this.getClass().getResource("edu/icet/view/styles.css").toExternalForm();
         scene.getStylesheets().add(css);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Thoga Kade");
         primaryStage.show();
 
 //        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("edu/icet/view/customer-form.fxml"))));

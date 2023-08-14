@@ -9,71 +9,68 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane depthTest="DISABLE" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="1053.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.OrderController">
+<AnchorPane fx:id="rootPane" depthTest="DISABLE" minHeight="-Infinity" minWidth="-Infinity" prefHeight="789.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.OrderController">
     <children>
-        <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="340.0" layoutY="-47.0">
-            <image>
-                <Image url="@Thoga%20Kade.png" />
-            </image>
-        </ImageView>
-        <Label layoutX="505.0" layoutY="38.0" text="Order">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c4d7b2" height="136.0" layoutX="-16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1001.0" />
+        <Label layoutX="449.0" layoutY="45.0" text="Order">
             <font>
-                <Font name="System Bold" size="25.0" />
+                <Font name="System Bold" size="32.0" />
             </font>
         </Label>
-      <Label layoutX="29.0" layoutY="119.0" text="Order ID       : ">
+      <Label layoutX="44.0" layoutY="176.0" text="Order ID       : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="29.0" layoutY="153.0" text="Customer ID :">
+      <Label layoutX="44.0" layoutY="210.0" text="Customer ID :">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="664.0" layoutY="119.0" text="Order Date         : ">
+      <Label layoutX="590.0" layoutY="178.0" text="Order Date         : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="664.0" layoutY="153.0" text="Customer Name : ">
+      <Label layoutX="590.0" layoutY="212.0" text="Customer Name : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="32.0" layoutY="222.0" text="Code : ">
+      <Label layoutX="47.0" layoutY="283.0" text="Code : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="258.0" layoutY="194.0" text="Description  : ">
+      <Label layoutX="268.0" layoutY="255.0" text="Description  : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="609.0" layoutY="194.0" text="Unit Price : ">
+      <Label layoutX="590.0" layoutY="255.0" text="Unit Price : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="760.0" layoutY="194.0" text="Qty. on Hand  : ">
+      <Label layoutX="737.0" layoutY="255.0" text="Qty. on Hand  : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="911.0" layoutY="194.0" text="Qty.  : ">
+      <Label layoutX="865.0" layoutY="255.0" text="Qty.  : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtDes" layoutX="255.0" layoutY="221.0" prefHeight="26.0" prefWidth="318.0" />
-      <TextField fx:id="txtUnitPrice" layoutX="602.0" layoutY="221.0" prefHeight="26.0" prefWidth="139.0" />
-      <TextField fx:id="txtQtyOnHand" layoutX="760.0" layoutY="221.0" prefHeight="26.0" prefWidth="111.0" />
-      <TextField fx:id="txtQty" layoutX="893.0" layoutY="219.0" prefHeight="26.0" prefWidth="128.0" />
-      <TextField fx:id="txtOrderDate" layoutX="799.0" layoutY="119.0" prefHeight="26.0" prefWidth="173.0" />
-      <TableView fx:id="tblOrderDetail" layoutX="90.0" layoutY="310.0" prefHeight="267.0" prefWidth="860.0">
+      <TextField fx:id="txtDes" layoutX="264.0" layoutY="282.0" prefHeight="31.0" prefWidth="276.0" />
+      <TextField fx:id="txtUnitPrice" layoutX="588.0" layoutY="280.0" prefHeight="31.0" prefWidth="119.0" />
+      <TextField fx:id="txtQtyOnHand" layoutX="737.0" layoutY="282.0" prefHeight="26.0" prefWidth="111.0" />
+      <TextField fx:id="txtQty" layoutX="866.0" layoutY="280.0" prefHeight="31.0" prefWidth="46.0" />
+      <TextField fx:id="txtOrderDate" layoutX="725.0" layoutY="178.0" prefHeight="26.0" prefWidth="173.0" />
+      <TableView fx:id="tblOrderDetail" layoutX="52.0" layoutY="395.0" prefHeight="303.0" prefWidth="884.0">
         <columns>
           <TableColumn fx:id="colCode" prefWidth="75.0" text="Code" />
           <TableColumn fx:id="colDes" prefWidth="75.0" text="Description" />
@@ -85,31 +82,36 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="924.0" layoutY="597.0" mnemonicParsing="false" onAction="#btnPlaceOrderAction" text="Place Order" />
-      <Label layoutX="57.0" layoutY="603.0" text="Total : ">
+      <Button layoutX="823.0" layoutY="722.0" mnemonicParsing="false" onAction="#btnPlaceOrderAction" text="Place Order" />
+      <Label layoutX="57.0" layoutY="727.0" text="Total : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbCustID" layoutX="156.0" layoutY="153.0" onAction="#customerIdAction" prefWidth="150.0" />
-      <ComboBox fx:id="cmbCode" layoutX="87.0" layoutY="219.0" onAction="#itemCodeAction" prefHeight="31.0" prefWidth="139.0" />
-      <Label fx:id="txtOrderID" layoutX="135.0" layoutY="119.0">
+      <ComboBox fx:id="cmbCustID" layoutX="171.0" layoutY="210.0" onAction="#customerIdAction" prefWidth="150.0" />
+      <ComboBox fx:id="cmbCode" layoutX="102.0" layoutY="280.0" onAction="#itemCodeAction" prefHeight="31.0" prefWidth="119.0" />
+      <Label fx:id="txtOrderID" layoutX="150.0" layoutY="176.0" prefHeight="25.0" prefWidth="81.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="txtCustName" layoutX="792.0" layoutY="153.0">
+      <Label fx:id="txtCustName" layoutX="728.0" layoutY="216.0" prefHeight="25.0" prefWidth="173.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="934.0" layoutY="269.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add to Cart" />
-      <Button layoutX="849.0" layoutY="269.0" mnemonicParsing="false" text="Remove" />
-      <Label fx:id="txtTot" layoutX="105.0" layoutY="598.0" prefHeight="30.0" prefWidth="160.0">
+      <Button layoutX="818.0" layoutY="333.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add to Cart" />
+      <Button layoutX="733.0" layoutY="333.0" mnemonicParsing="false" text="Remove" />
+      <Label fx:id="txtTot" layoutX="105.0" layoutY="724.0" prefHeight="30.0" prefWidth="126.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-      <Button layoutX="115.0" layoutY="269.0" mnemonicParsing="false" onAction="#addBtnAction" text="Add Item" />
-      <Button layoutX="332.0" layoutY="154.0" mnemonicParsing="false" onAction="#addNewCustomerAction" text="New Customer" />
+      <Button layoutX="134.0" layoutY="331.0" mnemonicParsing="false" onAction="#addItemBtnAction" text="Add Item" />
+      <Button layoutX="347.0" layoutY="211.0" mnemonicParsing="false" onAction="#addNewCustomerAction" text="New Customer" />
+      <ImageView fitHeight="85.0" fitWidth="85.0" layoutX="345.0" layoutY="26.0">
+         <image>
+            <Image url="@icons/checkout.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
