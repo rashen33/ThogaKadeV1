@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.LoginController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c4d7b2" height="400.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
+      <ImageView fitHeight="304.0" fitWidth="304.0" layoutX="148.0" layoutY="-29.0">
+         <image>
+            <Image url="@icons/Thoga_Kade-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <TextField editable="false" layoutX="186.0" layoutY="186.0" prefHeight="51.0" prefWidth="240.0" promptText="User Name" text="Admin" />
+      <TextField fx:id="txtPw" layoutX="186.0" layoutY="250.0" prefHeight="51.0" prefWidth="240.0" promptText="Password" />
+      <Button fx:id="loginBtn" layoutX="230.0" layoutY="325.0" mnemonicParsing="false" onAction="#loginBtn" prefHeight="42.0" prefWidth="140.0" stylesheets="@styles.css" text="Login" textFill="#0d0707">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

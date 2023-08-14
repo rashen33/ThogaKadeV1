@@ -8,6 +8,10 @@
     -fx-background-color: #A0C49D;
     -fx-text-fill: "black";
 }
+#loginBtn:hover{
+    -fx-background-color: #A0C49D;
+    -fx-text-fill: "white";
+}
 
 .label{
     -fx-alignment: center;

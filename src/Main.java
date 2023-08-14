@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("edu/icet/view/dash-board.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("edu/icet/view/login-form.fxml"));
         Scene scene = new Scene(root);
         String css = this.getClass().getResource("edu/icet/view/styles.css").toExternalForm();
         scene.getStylesheets().add(css);
