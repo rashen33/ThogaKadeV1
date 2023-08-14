@@ -1,0 +1,26 @@
+.button{
+           -fx-border-radius-color:#A0C49D;
+           -fx-background-radius: 45px 45px 45px 45px;
+           -fx-background-color: #A0C49D;
+}
+
+.button:hover{
+    -fx-background-color: #A0C49D;
+    -fx-text-fill: "black";
+}
+
+.label{
+    -fx-alignment: center;
+}
+
+#greetings-pane{
+    -fx-border-radius-color:#A0C49D;
+    -fx-background-radius: 45px 45px 45px 45px;
+    -fx-background-color: #A0C49D;
+}
+
+#specPane{
+    -fx-border-radius-color:#A0C49D;
+    -fx-background-radius: 45px 45px 45px 45px;
+    -fx-background-color: #A0C49D;
+}
