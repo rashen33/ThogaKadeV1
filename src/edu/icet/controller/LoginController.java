@@ -30,10 +30,8 @@ public class LoginController {
             }else{
                 new Alert(Alert.AlertType.WARNING,"Invalid Password!").show();
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
